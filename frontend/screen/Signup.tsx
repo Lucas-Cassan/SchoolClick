@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -9,6 +9,8 @@ import {
   SafeAreaView,
 } from "react-native";
 import { CheckBox } from "react-native-elements";
+import * as SecureStore from "expo-secure-store";
+import { UidContext } from "../component/AppContext";
 
 const Signup = ({ navigation }: { navigation?: any }) => {
   // Form
@@ -34,6 +36,8 @@ const Signup = ({ navigation }: { navigation?: any }) => {
   const [validated, setValidated] = useState<boolean>(false);
   const [screen1Error, setScreen1Error] = useState<string | undefined>();
   const [screen3Error, setScreen3Error] = useState<string | undefined>();
+
+  const auth = useContext(UidContext);
 
   const handleScreen1 = () => {
     setScreen1(true);
@@ -75,21 +79,17 @@ const Signup = ({ navigation }: { navigation?: any }) => {
 
     axios
       .post("http://10.50.37.223:5000/api/user/signup", infoUserToCreate)
-      .then(() => {
+      .then((res) => {
         setValidated(true);
+        SecureStore.setItemAsync("token", res.data.token);
+        setTimeout(() => {
+          auth.connect(res.data);
+        }, 2000);
       })
       .catch((err) => {
         setScreen3Error(err.response.data.error);
       });
   };
-
-  // useEffect(() => {
-  //   if (validated) {
-  //     setTimeout(() => {
-  //       navigation.navigate("Match");
-  //     }, 2000);
-  //   }
-  // }, [validated]);
 
   return (
     <>
