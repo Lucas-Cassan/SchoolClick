@@ -19,7 +19,14 @@ module.exports.signup = (req, res, next) => {
       });
       user
         .save()
-        .then(() => res.status(201).json({ message: "Utilisateur créé !" }))
+        .then(() => {
+          res.status(201).json({
+            message: "Utilisateur créé !",
+            token: jwt.sign({ user: email }, "ueahzçidhaée&é&!&èéçà", {
+              expiresIn: "24h",
+            }),
+          });
+        })
         .catch(() => res.status(400).send({ error: "Email déja utilisé !" }));
     })
     .catch((error) => res.status(500).json({ error }));
@@ -43,7 +50,7 @@ module.exports.login = (req, res, next) => {
             console.log("connecté");
             res.status(200).json({
               userId: user._id,
-              token: jwt.sign({ userId: user._id }, "ueahzçidhaée&é&!&èéçà", {
+              token: jwt.sign({ user: user.email }, "ueahzçidhaée&é&!&èéçà", {
                 expiresIn: "24h",
               }),
             });
