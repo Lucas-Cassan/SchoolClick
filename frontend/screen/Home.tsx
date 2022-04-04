@@ -14,7 +14,7 @@ const Home = ({ navigation }: any) => {
       <View style={styles.viewTop}>
         <Text style={styles.title}>SchoolClick</Text>
       </View>
-      <View style={styles.viewBottom}>
+      <View style={styles.viewBottomAbsolue}>
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate("Login")}

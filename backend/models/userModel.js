@@ -23,7 +23,6 @@ const userSchema = new mongoose.Schema(
       required: true,
       minlength: 3,
       maxlength: 30,
-      unique: true,
       trim: true,
     },
     lastName: {
@@ -31,7 +30,6 @@ const userSchema = new mongoose.Schema(
       required: true,
       minlength: 3,
       maxlength: 30,
-      unique: true,
       trim: true,
     },
 
@@ -44,7 +42,7 @@ const userSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  },
+  }
 );
 const userModel = mongoose.model("user", userSchema);
 module.exports = userModel;
