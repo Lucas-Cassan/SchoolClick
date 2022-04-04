@@ -23,7 +23,7 @@ const Login = ({ navigation }: { navigation?: any }) => {
     axios
       .post("http://10.50.37.223:5000/api/user/login", infosUser)
       .then(() => {
-        navigation.navigate("Home");
+        navigation.navigate("Match");
       })
       .catch((err) => {
         if (err.response.data.error === "Mot de passe incorrect !") {
