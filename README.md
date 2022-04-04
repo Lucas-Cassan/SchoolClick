@@ -25,7 +25,8 @@ Les fichiers du back-end du serveur pour le projet sont présents dans ce répo.
 
 Vous aurez besoin d'avoir `Node` et `npm` installés localement sur votre machine.
 
-Clonez ce dépôt: https://github.com/lagrube/Training-React-Native
+Clonez ce dépôt: https://github.com/Lucas-Cassan/SchoolClick.git.  
+*Séléctionner la branche Exam-App-Mobile*
 
 Ouvrir un terminal et se déplacer dans le dossier frontend, exécutez`npm install`.  
 Ouvrir un autre terminal et se déplacer dans le dossier backend, exécutez `npm install`.  
