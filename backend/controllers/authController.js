@@ -3,19 +3,26 @@ const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 
 module.exports.signup = (req, res, next) => {
-  const { pseudo, email, password } = req.body;
+  const { name, lastName, email, password, dev, marketing } = req.body;
+  console.log(req.body);
+
   bcrypt
     .hash(password, 10)
     .then((hash) => {
       const user = new User({
-        pseudo: pseudo,
+        name: name,
+        lastName: lastName,
         email: email,
         password: hash,
+        dev: dev,
+        marketing: marketing,
       });
       user
         .save()
         .then(() => res.status(201).json({ message: "Utilisateur créé !" }))
-        .catch((err) => res.status(400).send({ error: err }));
+        .catch((err) =>
+          res.status(400).send({ error: "Email déja utilisé !" }),
+        );
     })
     .catch((error) => res.status(500).json({ error }));
 };

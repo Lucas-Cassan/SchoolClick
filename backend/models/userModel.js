@@ -3,14 +3,6 @@ const { isEmail } = require("validator");
 
 const userSchema = new mongoose.Schema(
   {
-    pseudo: {
-      type: String,
-      required: true,
-      minlength: 3,
-      maxlength: 30,
-      unique: true,
-      trim: true,
-    },
     email: {
       type: String,
       required: true,
@@ -24,6 +16,30 @@ const userSchema = new mongoose.Schema(
       required: true,
       minlength: 6,
       maxlength: 1000,
+    },
+
+    name: {
+      type: String,
+      required: true,
+      minlength: 3,
+      maxlength: 30,
+      unique: true,
+      trim: true,
+    },
+    lastName: {
+      type: String,
+      required: true,
+      minlength: 3,
+      maxlength: 30,
+      unique: true,
+      trim: true,
+    },
+
+    dev: {
+      type: Boolean,
+    },
+    marketing: {
+      type: Boolean,
     },
   },
   {
