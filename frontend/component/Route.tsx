@@ -41,17 +41,67 @@ const Route = () => {
   }, []);
 
   return (
+
     <UidContext.Provider value={authMemo}>
       <NavigationContainer>
         {auth ? (
           <Stack.Navigator>
-            <Stack.Screen name="Match" component={Match} />
+             <Stack.Screen
+          name="Match"
+          component={Match}
+          options={{
+            title: "",
+            headerStyle: {
+              backgroundColor: "#026fff",
+            },
+          }}
+        />
           </Stack.Navigator>
         ) : (
           <Stack.Navigator>
-            <Stack.Screen name="Home" component={Home} />
-            <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="Signup" component={Signup} />
+            <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{
+            title: "",
+            headerStyle: {
+              backgroundColor: "#026fff",
+            },
+          }}
+        />
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{
+            title: "Connexion",
+            headerStyle: {
+              backgroundColor: "#F5F5FA",
+            },
+            headerTintColor: "#026fff",
+            headerTitleStyle: {
+              fontFamily: "Poppins-Bold",
+              fontSize: 25,
+              fontWeight: "bold",
+            },
+          }}
+        />
+        <Stack.Screen
+          name="Signup"
+          component={Signup}
+          options={{
+            title: "Inscription",
+            headerStyle: {
+              backgroundColor: "#F5F5FA",
+            },
+            headerTintColor: "#026fff",
+            headerTitleStyle: {
+              fontFamily: "Poppins-Bold",
+              fontSize: 25,
+              fontWeight: "bold",
+            },
+          }}
+        />
+       
           </Stack.Navigator>
         )}
       </NavigationContainer>

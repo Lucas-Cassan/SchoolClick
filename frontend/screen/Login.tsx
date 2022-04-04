@@ -1,4 +1,5 @@
 import axios from "axios";
+import styles from "../styles/Styles";
 import React, { useContext, useState } from "react";
 import {
   Button,
@@ -6,6 +7,7 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from "react-native";
 import * as SecureStore from "expo-secure-store";
@@ -40,11 +42,13 @@ const Login = ({ navigation }: { navigation?: any }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={styles.body}>
       <SafeAreaView>
-        <Text style={styles.auth}>Espace connexion</Text>
         <View>
-          <TextInput
+
+          <View style={styles.inputBox}>
+            <Text style={styles.label}>Identifiant</Text>
+             <TextInput
             style={styles.input}
             placeholder="Entrez votre email"
             onChangeText={(text) => setEmail(text)}
@@ -52,7 +56,10 @@ const Login = ({ navigation }: { navigation?: any }) => {
             onSubmitEditing={handleLogin}
             autoCapitalize="none"
           />
-          <TextInput
+          </View>
+          <View style={styles.inputBox}>
+            <Text style={styles.label}>Mot de passe</Text>
+              <TextInput
             style={styles.input}
             placeholder="Entrez votre mot de passe"
             onChangeText={(text) => setPassword(text)}
@@ -61,49 +68,18 @@ const Login = ({ navigation }: { navigation?: any }) => {
             onSubmitEditing={handleLogin}
             autoCapitalize="none"
           />
+          </View>
         </View>
+        
         {error && <Text>{error}</Text>}
-        <Button onPress={handleLogin} title="Se connecter"></Button>
-        <Text style={styles.createaccount}>Vous n'avez pas de compte ?</Text>
-        <Button
-          onPress={() => navigation.navigate("Signup")}
-          title="S'inscrire"
-        />
+        <View style={styles.viewBottom}>
+          <TouchableOpacity style={styles.button} onPress={handleLogin}>
+            <Text style={styles.buttonText}>Inscription</Text>
+          </TouchableOpacity>
+        </View>
       </SafeAreaView>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: "50%",
-    height: "100%",
-  },
-  input: {
-    margin: 15,
-    height: 40,
-    borderColor: "#7a42f4",
-    borderWidth: 1,
-  },
-  auth: {
-    textAlign: "center",
-    fontSize: 28,
-    alignSelf: "center",
-    justifyContent: "center",
-    alignItems: "center",
-    textAlignVertical: "center",
-    alignContent: "center",
-  },
-  createaccount: {
-    // color: "white",
-    paddingTop: 34,
-    textAlign: "center",
-    alignSelf: "center",
-    justifyContent: "center",
-    alignItems: "center",
-    textAlignVertical: "center",
-    alignContent: "center",
-  },
-});
 
 export default Login;
