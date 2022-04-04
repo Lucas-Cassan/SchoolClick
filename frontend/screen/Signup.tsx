@@ -78,8 +78,10 @@ const Signup = ({ navigation }: { navigation?: any }) => {
     };
 
     axios
-      .post("http://10.50.37.223:5000/api/user/signup", infoUserToCreate)
+      .post("http://10.50.37.171:5000/api/user/signup", infoUserToCreate)
       .then((res) => {
+        console.log("dans then");
+
         setValidated(true);
         SecureStore.setItemAsync("token", res.data.token);
         setTimeout(() => {
@@ -87,6 +89,8 @@ const Signup = ({ navigation }: { navigation?: any }) => {
         }, 2000);
       })
       .catch((err) => {
+        console.log("dans catch");
+
         setScreen3Error(err.response.data.error);
       });
   };

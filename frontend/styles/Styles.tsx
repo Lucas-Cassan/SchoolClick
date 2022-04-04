@@ -8,6 +8,14 @@ const styles = StyleSheet.create({
     width: "100%",
     backgroundColor: "#fff",
   },
+  bodyCenter: {
+    height: "100%",
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    backgroundColor: "#fff",
+  },
   bodyColor: {
     height: "100%",
     width: "100%",
@@ -54,10 +62,18 @@ const styles = StyleSheet.create({
   },
 
   //View absolute
-  viewBottom: {
+  viewBottomAbsolue: {
     position: "absolute",
     bottom: "8%",
     width: "100%",
+  },
+  viewBottom: {
+    width: "100%",
+    height: "70%",
+  },
+  viewBody: {
+    width: "100%",
+    height: "30%",
   },
   viewTop: {
     position: "absolute",
@@ -89,10 +105,12 @@ const styles = StyleSheet.create({
     width: "90%",
   },
   label: {
+    fontFamily: "Poppins-Bold",
     fontSize: 20,
     fontWeight: "bold",
   },
   input: {
+    fontFamily: "Poppins-Regular",
     borderRadius: 10,
     backgroundColor: "white",
     shadowOffset: {

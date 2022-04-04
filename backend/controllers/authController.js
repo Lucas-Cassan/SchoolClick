@@ -37,7 +37,6 @@ module.exports.login = (req, res, next) => {
   User.findOne({ email })
     .then((user) => {
       if (!user) {
-        console.log("pas d'user");
         return res.status(401).json({ error: "Utilisateur non trouvé !" });
       }
       bcrypt
