@@ -1,19 +1,32 @@
-import React from "react";
-import { Button, Text, View } from "react-native";
+import React, { useState } from "react";
+import styles from "../styles/Styles";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Touchable,
+  TouchableOpacity,
+} from "react-native";
 
-const Home = ({ navigation }: { navigation: any }) => {
+const Home = ({ navigation }: any) => {
   return (
-    <View>
-      <Text>SchoolClick</Text>
-      <View>
-        <Button
+    <View style={styles.bodyColor}>
+      <View style={styles.viewTop}>
+        <Text style={styles.title}>SchoolClick</Text>
+      </View>
+      <View style={styles.viewBottom}>
+        <TouchableOpacity
+          style={styles.button}
           onPress={() => navigation.navigate("Login")}
-          title="Connexion"
-        />
-        <Button
+        >
+          <Text style={styles.buttonText}>Connexion</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
           onPress={() => navigation.navigate("Signup")}
-          title="Inscription"
-        />
+        >
+          <Text style={styles.buttonText}>Inscription</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
