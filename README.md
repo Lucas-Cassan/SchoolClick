@@ -16,7 +16,8 @@
 
 ### Objectifs et Compétences évalué
 
-- Avoir une maquette Figma
+- Avoir une maquette Figma *(Envoyé par email)*
+- Maquette Adobe XD : https://xd.adobe.com/view/4fb0c0c1-e993-4ddc-b6da-5d852732151a-1ae3/?fullscreen
 - Avoir un projet qui fonctionne
 
 ## 🔨 Installation
