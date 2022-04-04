@@ -42,7 +42,7 @@ const Login = ({ navigation }: { navigation?: any }) => {
       <SafeAreaView>
         <View style={styles.viewBody}>
           <View style={styles.inputBox}>
-            <Text style={styles.label}>Identifiant</Text>
+            <Text style={styles.label}>E-mail</Text>
             <TextInput
               style={styles.input}
               placeholder="Entrez votre email"
@@ -64,12 +64,14 @@ const Login = ({ navigation }: { navigation?: any }) => {
               autoCapitalize="none"
             />
           </View>
-          {error && <Text>{error}</Text>}
+          <View style={styles.errorBox}>
+            {error && <Text style={styles.error}>{error}</Text>}
+          </View>
         </View>
 
         <View style={styles.viewBottom}>
           <TouchableOpacity style={styles.button} onPress={handleLogin}>
-            <Text style={styles.buttonText}>Inscription</Text>
+            <Text style={styles.buttonText}>Connexion</Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>

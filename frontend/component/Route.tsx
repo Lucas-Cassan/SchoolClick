@@ -51,9 +51,15 @@ const Route = () => {
               name="Match"
               component={Match}
               options={{
-                title: "",
+                title: "Home",
                 headerStyle: {
-                  backgroundColor: "#026fff",
+                  backgroundColor: "#F5F5FA",
+                },
+                headerTintColor: "#026fff",
+                headerTitleStyle: {
+                  fontFamily: "Poppins-Bold",
+                  fontSize: 25,
+                  fontWeight: "bold",
                 },
               }}
             />

@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
+import styles from "../styles/Styles";
 import {
   StyleSheet,
   Text,
@@ -7,6 +8,7 @@ import {
   TextInput,
   Button,
   SafeAreaView,
+  TouchableOpacity,
 } from "react-native";
 import { CheckBox } from "react-native-elements";
 import * as SecureStore from "expo-secure-store";
@@ -80,8 +82,7 @@ const Signup = ({ navigation }: { navigation?: any }) => {
     axios
       .post("http://10.50.37.171:5000/api/user/signup", infoUserToCreate)
       .then((res) => {
-        console.log("dans then");
-
+        setScreen3Error("");
         setValidated(true);
         SecureStore.setItemAsync("token", res.data.token);
         setTimeout(() => {
@@ -89,74 +90,102 @@ const Signup = ({ navigation }: { navigation?: any }) => {
         }, 2000);
       })
       .catch((err) => {
-        console.log("dans catch");
-
         setScreen3Error(err.response.data.error);
       });
   };
 
   return (
-    <>
-      <View style={styles.content}>
-        <SafeAreaView>
-          <Text style={styles.auth}>Espace inscription</Text>
-          {screen1 && (
-            <View>
-              <Text>Email</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Entrez votre email"
-                onChangeText={(text) => setEmail(text)}
-                defaultValue={email}
-                autoCapitalize="none"
-              />
-              <Text>Mot de passe</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Entrez votre email"
-                onChangeText={(text) => setPassword(text)}
-                defaultValue={password}
-                secureTextEntry
-                autoCapitalize="none"
-              />
-              <Text>Confirmer mot de passe</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Entrez votre nom"
-                onChangeText={(text) => setConfirmPassword(text)}
-                defaultValue={confirmPassword}
-                secureTextEntry
-                autoCapitalize="none"
-              />
-              <Button onPress={handleScreen2} title="Suivant"></Button>
-              {screen1Error !== "" && <Text>{screen1Error}</Text>}
+    <View style={styles.body}>
+      <SafeAreaView>
+        {screen1 && (
+          <View>
+            <View style={styles.viewBody}>
+              <View style={styles.inputBox}>
+                <Text style={styles.label}>E-mail</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Entrez votre email"
+                  onChangeText={(text) => setEmail(text)}
+                  defaultValue={email}
+                  autoCapitalize="none"
+                />
+              </View>
+              <View style={styles.inputBox}>
+                <Text style={styles.label}>Mot de passe</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Entrez votre mot de passe"
+                  onChangeText={(text) => setPassword(text)}
+                  defaultValue={password}
+                  secureTextEntry
+                  autoCapitalize="none"
+                />
+              </View>
+              <View style={styles.inputBox}>
+                <Text style={styles.label}>Confirmer mot de passe</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Entrez votre mot de passe"
+                  onChangeText={(text) => setConfirmPassword(text)}
+                  defaultValue={confirmPassword}
+                  secureTextEntry
+                  autoCapitalize="none"
+                />
+              </View>
+              <View style={styles.errorBox}>
+                {screen1Error !== "" && (
+                  <Text style={styles.error}>{screen1Error}</Text>
+                )}
+              </View>
             </View>
-          )}
-          {screen2 && (
-            <View>
-              <Text>Prenom</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Entrez votre mot de passe"
-                onChangeText={(text) => setName(text)}
-                defaultValue={name}
-                autoCapitalize="none"
-              />
-              <Text>Nom</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Entrez votre mot de passe"
-                onChangeText={(text) => setLastName(text)}
-                defaultValue={lastName}
-                autoCapitalize="none"
-              />
-              <Button onPress={handleScreen3} title="Suivant"></Button>
-              <Button onPress={handleScreen1} title="Retour"></Button>
+            <View style={styles.viewBottom}>
+              <TouchableOpacity style={styles.button} onPress={handleScreen2}>
+                <Text style={styles.buttonText}>Suivant</Text>
+              </TouchableOpacity>
             </View>
-          )}
-          {screen3 && (
-            <View>
-              <Text>Selectionnez vos centres d'intérêts</Text>
+          </View>
+        )}
+
+        {screen2 && (
+          <View>
+            <View style={styles.viewBodyLarge}>
+              <View style={styles.inputBox}>
+                <Text style={styles.label}>Nom</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Entrez votre mot de passe"
+                  onChangeText={(text) => setLastName(text)}
+                  defaultValue={lastName}
+                  autoCapitalize="none"
+                />
+              </View>
+              <View style={styles.inputBox}>
+                <Text style={styles.label}>Prénom</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Entrez votre mot de passe"
+                  onChangeText={(text) => setName(text)}
+                  defaultValue={name}
+                  autoCapitalize="none"
+                />
+              </View>
+            </View>
+            <View style={styles.viewBottomLarge}>
+              <TouchableOpacity style={styles.button} onPress={handleScreen3}>
+                <Text style={styles.buttonText}>Suivant</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.button} onPress={handleScreen1}>
+                <Text style={styles.buttonText}>Retour</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        )}
+        {screen3 && (
+          <View>
+            <View style={styles.viewBodyLarge}>
+              <Text style={styles.titleMin}>
+                Selectionnez vos centres d'intérêts
+              </Text>
               <CheckBox
                 title="Dev"
                 checked={devCheck}
@@ -167,48 +196,33 @@ const Signup = ({ navigation }: { navigation?: any }) => {
                 checked={marketingCheck}
                 onPress={() => setMarketingCheck(!marketingCheck)}
               />
-              <Button onPress={CreateNewAccount} title="Créer mon compte" />
-              <Button onPress={handleScreen2} title="Retour"></Button>
-              {validated && <Text>Utilisateur créer !</Text>}
-              {screen3Error !== "" && <Text>{screen3Error}</Text>}
+              <View style={styles.errorBox}>
+                {validated && (
+                  <Text style={styles.validate}>Utilisateur créer !</Text>
+                )}
+              </View>
+              <View style={styles.errorBox}>
+                {screen3Error !== "" && (
+                  <Text style={styles.error}>{screen3Error}</Text>
+                )}
+              </View>
             </View>
-          )}
-        </SafeAreaView>
-      </View>
-    </>
+            <View style={styles.viewBottomLarge}>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={CreateNewAccount}
+              >
+                <Text style={styles.buttonText}>S'inscire</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.button} onPress={handleScreen2}>
+                <Text style={styles.buttonText}>Retour</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        )}
+      </SafeAreaView>
+    </View>
   );
 };
-
-const styles = StyleSheet.create({
-  auth: {
-    textAlign: "center",
-    fontSize: 28,
-    alignSelf: "center",
-    justifyContent: "center",
-    alignItems: "center",
-    textAlignVertical: "center",
-    alignContent: "center",
-  },
-  content: {
-    marginTop: "50%",
-    height: "100%",
-  },
-  input: {
-    margin: 15,
-    height: 40,
-    borderColor: "#7a42f4",
-    borderWidth: 1,
-  },
-  text: {
-    textAlign: "center",
-    fontSize: 20,
-    color: "white",
-    alignSelf: "center",
-    justifyContent: "center",
-    alignItems: "center",
-    textAlignVertical: "center",
-    alignContent: "center",
-  },
-});
 
 export default Signup;
