@@ -11,9 +11,6 @@ const styles = StyleSheet.create({
   bodyCenter: {
     height: "100%",
     width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
     backgroundColor: "#fff",
   },
   bodyColor: {
@@ -34,6 +31,11 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.5,
     shadowRadius: 3,
+  },
+  titleMin: {
+    fontFamily: "Poppins-Bold",
+    fontWeight: "bold",
+    fontSize: 18,
   },
 
   //Button
@@ -61,6 +63,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
 
+  //Checkbox
+
   //View absolute
   viewBottomAbsolue: {
     position: "absolute",
@@ -69,11 +73,29 @@ const styles = StyleSheet.create({
   },
   viewBottom: {
     width: "100%",
-    height: "70%",
+    height: "15%",
+  },
+  viewBottomLarge: {
+    width: "100%",
+    height: "20%",
   },
   viewBody: {
     width: "100%",
-    height: "30%",
+    height: "85%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    position: "relative",
+  },
+  viewBodyLarge: {
+    width: "100%",
+    height: "80%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    position: "relative",
   },
   viewTop: {
     position: "absolute",
@@ -87,6 +109,26 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 0,
     width: "100%",
+  },
+
+  //Error
+  errorBox: {
+    position: "absolute",
+    bottom: 10,
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  error: {
+    color: "#FC6A6A",
+    fontFamily: "Poppins-Bold",
+    fontSize: 16,
+  },
+  validate: {
+    color: "#80FC6A",
+    fontFamily: "Poppins-Bold",
+    fontSize: 16,
   },
 
   //View

@@ -6,7 +6,6 @@ import Disconnect from "../component/Disconnect";
 const Match = () => {
   return (
     <View>
-      <Text>Home</Text>
       <Disconnect />
     </View>
   );
