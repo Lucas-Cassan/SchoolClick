@@ -1,14 +1,10 @@
 import React from "react";
 import { View } from "react-native";
 import { Text } from "react-native-elements";
-import Disconnect from "../component/Disconnect";
+import styles from "../styles/Styles";
 
 const Match = () => {
-  return (
-    <View>
-      <Disconnect />
-    </View>
-  );
+  return <View style={styles.body}></View>;
 };
 
 export default Match;
