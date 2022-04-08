@@ -12,7 +12,7 @@ const Home = ({ navigation }: any) => {
   return (
     <View style={styles.bodyColor}>
       <View style={styles.viewTop}>
-        <Text style={styles.title}>SchoolClick</Text>
+        <Text style={styles.title}>Spill</Text>
       </View>
       <View style={styles.viewBottomAbsolue}>
         <TouchableOpacity

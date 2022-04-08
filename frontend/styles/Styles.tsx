@@ -1,3 +1,4 @@
+import { hide } from "expo-splash-screen";
 import React from "react";
 import { StyleSheet, ViewStyle } from "react-native";
 
@@ -6,18 +7,19 @@ const styles = StyleSheet.create({
   body: {
     height: "100%",
     width: "100%",
-    backgroundColor: "#fff",
+    backgroundColor: "#F5F5FA",
   },
   bodyCenter: {
     height: "100%",
     width: "100%",
-    backgroundColor: "#fff",
+    backgroundColor: "#F5F5FA",
   },
   bodyColor: {
     height: "100%",
     width: "100%",
-    backgroundColor: "#026FFF",
+    backgroundColor: "#026fff",
   },
+  container: {},
 
   //Title
   title: {
@@ -33,6 +35,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
   },
   titleMin: {
+    marginVertical: 20,
     fontFamily: "Poppins-Bold",
     fontWeight: "bold",
     fontSize: 18,
@@ -61,6 +64,27 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins-Bold",
     fontWeight: "bold",
     fontSize: 20,
+  },
+  buttonLeft: {
+    borderRadius: 15,
+    backgroundColor: "white",
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
+    width: "90%",
+    height: 55,
+    marginVertical: "2%",
+    marginHorizontal: "5%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+  },
+  buttonIcon: {
+    marginHorizontal: 15,
   },
 
   //Checkbox
@@ -168,6 +192,38 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+  },
+
+  //PROFIL
+  picture: {
+    marginTop: 5,
+    width: 125,
+    height: 125,
+    borderRadius: 100,
+    backgroundColor: "white",
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
+  },
+  headerProfil: {
+    overflow: "hidden",
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  headerCircle: {
+    top: -420,
+    position: "absolute",
+    width: "100%",
+    height: 500,
+    backgroundColor: "#FCD36A",
+    borderRadius: 1000,
+    transform: [{ scaleX: 2 }],
   },
 });
 
