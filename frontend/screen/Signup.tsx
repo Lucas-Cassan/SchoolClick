@@ -9,6 +9,9 @@ import {
   Button,
   SafeAreaView,
   TouchableOpacity,
+  KeyboardAvoidingView,
+  ScrollView,
+  Platform,
 } from "react-native";
 import { CheckBox } from "react-native-elements";
 import * as SecureStore from "expo-secure-store";
@@ -74,7 +77,6 @@ const Signup = ({ navigation }: { navigation?: any }) => {
       name,
       lastName,
       // dateOfBirth,
-
       dev: devCheck,
       marketing: marketingCheck,
     };
@@ -96,9 +98,12 @@ const Signup = ({ navigation }: { navigation?: any }) => {
 
   return (
     <View style={styles.body}>
-      <SafeAreaView>
-        {screen1 && (
-          <View>
+      {screen1 && (
+        <KeyboardAvoidingView
+          style={{ flex: 1, justifyContent: "center" }}
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+        >
+          <ScrollView centerContent={true} style={{ flex: 1 }}>
             <View style={styles.viewBody}>
               <View style={styles.inputBox}>
                 <Text style={styles.label}>E-mail</Text>
@@ -132,28 +137,33 @@ const Signup = ({ navigation }: { navigation?: any }) => {
                   autoCapitalize="none"
                 />
               </View>
-              <View style={styles.errorBox}>
-                {screen1Error !== "" && (
-                  <Text style={styles.error}>{screen1Error}</Text>
-                )}
-              </View>
             </View>
-            <View style={styles.viewBottom}>
-              <TouchableOpacity style={styles.button} onPress={handleScreen2}>
-                <Text style={styles.buttonText}>Suivant</Text>
-              </TouchableOpacity>
+          </ScrollView>
+          <View style={styles.viewBottom}>
+            <View style={styles.errorBox}>
+              {screen1Error !== "" && (
+                <Text style={styles.error}>{screen1Error}</Text>
+              )}
             </View>
+            <TouchableOpacity style={styles.button} onPress={handleScreen2}>
+              <Text style={styles.buttonText}>Suivant</Text>
+            </TouchableOpacity>
           </View>
-        )}
+        </KeyboardAvoidingView>
+      )}
 
-        {screen2 && (
-          <View>
+      {screen2 && (
+        <KeyboardAvoidingView
+          style={{ flex: 1, justifyContent: "center" }}
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+        >
+          <ScrollView centerContent={true} style={{ flex: 1 }}>
             <View style={styles.viewBodyLarge}>
               <View style={styles.inputBox}>
                 <Text style={styles.label}>Nom</Text>
                 <TextInput
                   style={styles.input}
-                  placeholder="Entrez votre mot de passe"
+                  placeholder="Entrez votre nom"
                   onChangeText={(text) => setLastName(text)}
                   defaultValue={lastName}
                   autoCapitalize="none"
@@ -163,64 +173,61 @@ const Signup = ({ navigation }: { navigation?: any }) => {
                 <Text style={styles.label}>Prénom</Text>
                 <TextInput
                   style={styles.input}
-                  placeholder="Entrez votre mot de passe"
+                  placeholder="Entrez votre prénom"
                   onChangeText={(text) => setName(text)}
                   defaultValue={name}
                   autoCapitalize="none"
                 />
               </View>
             </View>
-            <View style={styles.viewBottomLarge}>
-              <TouchableOpacity style={styles.button} onPress={handleScreen3}>
-                <Text style={styles.buttonText}>Suivant</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.button} onPress={handleScreen1}>
-                <Text style={styles.buttonText}>Retour</Text>
-              </TouchableOpacity>
+          </ScrollView>
+          <View style={styles.viewBottomLarge}>
+            <TouchableOpacity style={styles.button} onPress={handleScreen3}>
+              <Text style={styles.buttonText}>Suivant</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={handleScreen1}>
+              <Text style={styles.buttonText}>Retour</Text>
+            </TouchableOpacity>
+          </View>
+        </KeyboardAvoidingView>
+      )}
+      {screen3 && (
+        <View>
+          <View style={styles.viewBodyLarge}>
+            <Text style={styles.titleMin}>
+              Selectionnez vos centres d'intérêts
+            </Text>
+            <CheckBox
+              title="Dev"
+              checked={devCheck}
+              onPress={() => setDevCheck(!devCheck)}
+            />
+            <CheckBox
+              title="Marketing"
+              checked={marketingCheck}
+              onPress={() => setMarketingCheck(!marketingCheck)}
+            />
+            <View style={styles.errorBox}>
+              {validated && (
+                <Text style={styles.validate}>Utilisateur créer !</Text>
+              )}
+            </View>
+            <View style={styles.errorBox}>
+              {screen3Error !== "" && (
+                <Text style={styles.error}>{screen3Error}</Text>
+              )}
             </View>
           </View>
-        )}
-        {screen3 && (
-          <View>
-            <View style={styles.viewBodyLarge}>
-              <Text style={styles.titleMin}>
-                Selectionnez vos centres d'intérêts
-              </Text>
-              <CheckBox
-                title="Dev"
-                checked={devCheck}
-                onPress={() => setDevCheck(!devCheck)}
-              />
-              <CheckBox
-                title="Marketing"
-                checked={marketingCheck}
-                onPress={() => setMarketingCheck(!marketingCheck)}
-              />
-              <View style={styles.errorBox}>
-                {validated && (
-                  <Text style={styles.validate}>Utilisateur créer !</Text>
-                )}
-              </View>
-              <View style={styles.errorBox}>
-                {screen3Error !== "" && (
-                  <Text style={styles.error}>{screen3Error}</Text>
-                )}
-              </View>
-            </View>
-            <View style={styles.viewBottomLarge}>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={CreateNewAccount}
-              >
-                <Text style={styles.buttonText}>S'inscire</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.button} onPress={handleScreen2}>
-                <Text style={styles.buttonText}>Retour</Text>
-              </TouchableOpacity>
-            </View>
+          <View style={styles.viewBottomLarge}>
+            <TouchableOpacity style={styles.button} onPress={CreateNewAccount}>
+              <Text style={styles.buttonText}>S'inscire</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={handleScreen2}>
+              <Text style={styles.buttonText}>Retour</Text>
+            </TouchableOpacity>
           </View>
-        )}
-      </SafeAreaView>
+        </View>
+      )}
     </View>
   );
 };

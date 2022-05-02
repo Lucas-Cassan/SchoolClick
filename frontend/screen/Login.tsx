@@ -2,7 +2,10 @@ import axios from "axios";
 import styles from "../styles/Styles";
 import React, { useContext, useState } from "react";
 import {
+  KeyboardAvoidingView,
+  Platform,
   SafeAreaView,
+  ScrollView,
   Text,
   TextInput,
   TouchableOpacity,
@@ -10,6 +13,7 @@ import {
 } from "react-native";
 import * as SecureStore from "expo-secure-store";
 import { UidContext } from "../component/AppContext";
+import Input from "../component/Input";
 
 const Login = ({ navigation }: { navigation?: any }) => {
   const [email, setEmail] = useState("");
@@ -39,42 +43,47 @@ const Login = ({ navigation }: { navigation?: any }) => {
 
   return (
     <View style={styles.body}>
-      <SafeAreaView>
-        <View style={styles.viewBody}>
-          <View style={styles.inputBox}>
-            <Text style={styles.label}>E-mail</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Entrez votre email"
-              onChangeText={(text) => setEmail(text)}
-              defaultValue={email}
-              onSubmitEditing={handleLogin}
-              autoCapitalize="none"
-            />
+      <KeyboardAvoidingView
+        style={{ flex: 1, justifyContent: "center" }}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
+        <ScrollView centerContent={true}>
+          <View style={styles.viewBody}>
+            <View style={styles.inputBox}>
+              <Text style={styles.label}>E-mail</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Entrez votre email"
+                onChangeText={(text) => setEmail(text)}
+                defaultValue={email}
+                onSubmitEditing={handleLogin}
+                autoCapitalize="none"
+              />
+            </View>
+            <View style={styles.inputBox}>
+              <Text style={styles.label}>Mot de passe</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Entrez votre mot de passe"
+                onChangeText={(text) => setPassword(text)}
+                defaultValue={password}
+                secureTextEntry
+                onSubmitEditing={handleLogin}
+                autoCapitalize="none"
+              />
+            </View>
           </View>
-          <View style={styles.inputBox}>
-            <Text style={styles.label}>Mot de passe</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Entrez votre mot de passe"
-              onChangeText={(text) => setPassword(text)}
-              defaultValue={password}
-              secureTextEntry
-              onSubmitEditing={handleLogin}
-              autoCapitalize="none"
-            />
-          </View>
-          <View style={styles.errorBox}>
-            {error && <Text style={styles.error}>{error}</Text>}
-          </View>
-        </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
 
-        <View style={styles.viewBottom}>
-          <TouchableOpacity style={styles.button} onPress={handleLogin}>
-            <Text style={styles.buttonText}>Connexion</Text>
-          </TouchableOpacity>
+      <View style={styles.viewBottom}>
+        <View style={styles.errorBox}>
+          {error && <Text style={styles.error}>{error}</Text>}
         </View>
-      </SafeAreaView>
+        <TouchableOpacity style={styles.button} onPress={handleLogin}>
+          <Text style={styles.buttonText}>Connexion</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };

@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.5,
     shadowRadius: 3,
+    elevation: 5,
   },
   titleMin: {
     marginVertical: 20,
@@ -51,6 +52,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.5,
     shadowRadius: 3,
+    elevation: 5,
     width: "90%",
     height: 55,
     marginVertical: "2%",
@@ -74,6 +76,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.5,
     shadowRadius: 3,
+    elevation: 5,
     width: "90%",
     height: 55,
     marginVertical: "2%",
@@ -96,6 +99,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   viewBottom: {
+    position: "relative",
     width: "100%",
     height: "15%",
   },
@@ -138,7 +142,7 @@ const styles = StyleSheet.create({
   //Error
   errorBox: {
     position: "absolute",
-    bottom: 10,
+    top: -40,
     width: "100%",
     display: "flex",
     justifyContent: "center",
@@ -185,6 +189,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.5,
     shadowRadius: 3,
+    elevation: 5,
     width: "100%",
     height: 50,
     paddingHorizontal: "5%",
@@ -207,6 +212,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.5,
     shadowRadius: 3,
+    elevation: 5,
   },
   headerProfil: {
     overflow: "hidden",
