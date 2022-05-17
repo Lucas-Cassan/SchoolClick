@@ -12,6 +12,8 @@ import {
 } from "react-native";
 import * as SecureStore from "expo-secure-store";
 import { UidContext } from "../component/AppContext";
+import { useDispatch } from "react-redux";
+import { getUser } from "../redux/action/user.action";
 
 const Login = ({ navigation }: { navigation?: any }) => {
   const [email, setEmail] = useState("");
@@ -20,6 +22,7 @@ const Login = ({ navigation }: { navigation?: any }) => {
   const [error, setError] = useState<string | null>(null);
 
   const auth = useContext(UidContext);
+  const dispatch = useDispatch<any>();
 
   const handleLogin = async () => {
     const infosUser = {
@@ -27,11 +30,12 @@ const Login = ({ navigation }: { navigation?: any }) => {
       email: email,
     };
     await axios
-      .post("http://10.50.37.223:5000/api/user/login", infosUser)
+      .post(`${process.env.REACT_APP_IP}/api/user/login`, infosUser)
       .then((res) => {
         auth.connect(res.data);
         SecureStore.setItemAsync("token", res.data.token);
         SecureStore.setItemAsync("user", res.data.userId);
+        dispatch(getUser(res.data.userId));
       })
       .catch(() => {
         setError("Email ou mot de passe incorrect !");

@@ -7,6 +7,7 @@ import * as ImagePicker from "expo-image-picker";
 import { Text, View, TouchableOpacity, Image } from "react-native";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { url } from "../Constant";
 
 const Profil = ({ navigation }: { navigation?: any }) => {
   const [image, setImage] = useState<string | any>(null);
@@ -18,7 +19,7 @@ const Profil = ({ navigation }: { navigation?: any }) => {
   useEffect(() => {
     setUserId(userReducer._id);
     if (userReducer.image !== "") {
-      setUserImage("require('" + userReducer.image + "')");
+      setUserImage(userReducer.image);
       setImage("");
     }
   }, [userReducer]);
@@ -45,7 +46,7 @@ const Profil = ({ navigation }: { navigation?: any }) => {
         formData.append("picture", picture);
 
         axios.post(
-          `http://10.50.37.223:5000/api/user/update-image/${userId}`,
+          `${url}/api/user/update-image/${userId}`,
           {
             formData,
           },
@@ -82,10 +83,7 @@ const Profil = ({ navigation }: { navigation?: any }) => {
             <Image source={{ uri: image }} style={styles.picture} />
           )}
           {userImage !== "" && (
-            <Image
-              source={require("../image/Gruber-Guillaume.jpg")}
-              style={styles.picture}
-            />
+            <Image source={{ uri: userImage }} style={styles.picture} />
           )}
         </TouchableOpacity>
         <Text style={styles.titleMin}>

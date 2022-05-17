@@ -28,5 +28,6 @@ router.post(
   upload.single("picture"),
   userController.updateImage,
 );
+router.get("/profile/:id", userController.getPicture);
 
 module.exports = router;
