@@ -1,12 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "../styles/Styles";
-import {
-  Text,
-  View,
-  StyleSheet,
-  Touchable,
-  TouchableOpacity,
-} from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 
 const Home = ({ navigation }: any) => {
   return (

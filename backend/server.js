@@ -24,7 +24,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Body-parser
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: 100000000000 }));
 // Routes
 app.use("/api/user", userRoutes);
 

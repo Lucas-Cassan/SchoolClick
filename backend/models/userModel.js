@@ -33,6 +33,10 @@ const userSchema = new mongoose.Schema(
       trim: true,
     },
 
+    image: {
+      type: String,
+    },
+
     dev: {
       type: Boolean,
     },
@@ -42,7 +46,7 @@ const userSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 const userModel = mongoose.model("user", userSchema);
 module.exports = userModel;

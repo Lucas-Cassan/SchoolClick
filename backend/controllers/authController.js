@@ -2,9 +2,8 @@ const bcrypt = require("bcrypt");
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 
-module.exports.signup = (req, res, next) => {
+exports.signup = (req, res, next) => {
   const { name, lastName, email, password, dev, marketing } = req.body;
-  console.log(req.body);
 
   bcrypt
     .hash(password, 10)
@@ -14,25 +13,32 @@ module.exports.signup = (req, res, next) => {
         lastName: lastName,
         email: email,
         password: hash,
+        image: "",
         dev: dev,
         marketing: marketing,
       });
       user
         .save()
         .then(() => {
-          res.status(201).json({
+          res.status(200).json({
             message: "Utilisateur créé !",
+            userId: user._id,
             token: jwt.sign({ user: email }, "ueahzçidhaée&é&!&èéçà", {
               expiresIn: "24h",
             }),
           });
         })
-        .catch(() => res.status(400).send({ error: "Email déja utilisé !" }));
+        .catch((err) => {
+          res.status(400).send({ error: "Email déja utilisé !" });
+          console.log(err);
+        });
     })
-    .catch((error) => res.status(500).json({ error }));
+    .catch((err) => {
+      res.status(500).json(err);
+    });
 };
 
-module.exports.login = (req, res, next) => {
+exports.login = (req, res, next) => {
   const { email, password } = req.body;
   User.findOne({ email })
     .then((user) => {
