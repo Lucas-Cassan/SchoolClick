@@ -1,31 +1,31 @@
 import React, { useEffect, useMemo, useState } from "react";
-import {
-  NavigationContainer,
-  useNavigationState,
-} from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Login from "../screen/Login";
 import Signup from "../screen/Signup";
 import Home from "../screen/Home";
 import Profil from "../screen/Profil";
 import Match from "../screen/Match";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import { Entypo, FontAwesome } from "@expo/vector-icons";
 
 import { UidContext } from "./AppContext";
 import * as SecureStore from "expo-secure-store";
-import { Text, TouchableOpacity } from "react-native";
-import { NavigationEvents } from "react-navigation";
+import { TouchableOpacity } from "react-native";
+import { useDispatch } from "react-redux";
+import { getUser } from "../redux/action/user.action";
 
 const Route = ({ navigation }: any) => {
   const Stack = createNativeStackNavigator();
 
   const [auth, setAuth] = useState<boolean>(false);
+  const [userId, setUserId] = useState<boolean>(false);
+
+  const dispatch = useDispatch<any>();
 
   const authMemo = useMemo(
     () => ({
       connect: async (data: any) => {
-        console.log(data);
+        setUserId(data.userId);
 
         if (data.token) {
           setAuth(true);
@@ -40,7 +40,7 @@ const Route = ({ navigation }: any) => {
         setAuth(false);
       },
     }),
-    []
+    [],
   );
 
   useEffect(() => {
@@ -49,7 +49,15 @@ const Route = ({ navigation }: any) => {
         setAuth(res !== null);
       })
       .catch((err) => console.log(err));
-  }, []);
+
+    SecureStore.getItemAsync("user")
+      .then((res) => {
+        console.log(res);
+        setUserId(res !== null);
+        dispatch(getUser(res));
+      })
+      .catch((err) => console.log(err));
+  }, [auth]);
 
   return (
     <UidContext.Provider value={authMemo}>

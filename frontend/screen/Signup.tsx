@@ -70,29 +70,30 @@ const Signup = ({ navigation }: { navigation?: any }) => {
   };
 
   const CreateNewAccount = () => {
-    const infoUserToCreate = {
-      email,
-      password,
-
-      name,
-      lastName,
-      // dateOfBirth,
-      dev: devCheck,
-      marketing: marketingCheck,
-    };
-
     axios
-      .post("http://10.50.37.171:5000/api/user/signup", infoUserToCreate)
+      .post("http://10.50.37.223:5000/api/user/signup", {
+        email,
+        password,
+
+        name,
+        lastName,
+        // dateOfBirth,
+        dev: devCheck,
+        marketing: marketingCheck,
+      })
       .then((res) => {
+        console.log(res.data);
         setScreen3Error("");
         setValidated(true);
         SecureStore.setItemAsync("token", res.data.token);
+        SecureStore.setItemAsync("user", res.data.userId);
         setTimeout(() => {
           auth.connect(res.data);
         }, 2000);
       })
       .catch((err) => {
-        setScreen3Error(err.response.data.error);
+        console.log(err);
+        setScreen3Error("Erreur");
       });
   };
 

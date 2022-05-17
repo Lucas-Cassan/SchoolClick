@@ -4,7 +4,6 @@ import React, { useContext, useState } from "react";
 import {
   KeyboardAvoidingView,
   Platform,
-  SafeAreaView,
   ScrollView,
   Text,
   TextInput,
@@ -13,7 +12,6 @@ import {
 } from "react-native";
 import * as SecureStore from "expo-secure-store";
 import { UidContext } from "../component/AppContext";
-import Input from "../component/Input";
 
 const Login = ({ navigation }: { navigation?: any }) => {
   const [email, setEmail] = useState("");
@@ -29,12 +27,13 @@ const Login = ({ navigation }: { navigation?: any }) => {
       email: email,
     };
     await axios
-      .post("http://10.50.37.171:5000/api/user/login", infosUser)
+      .post("http://10.50.37.223:5000/api/user/login", infosUser)
       .then((res) => {
         auth.connect(res.data);
         SecureStore.setItemAsync("token", res.data.token);
+        SecureStore.setItemAsync("user", res.data.userId);
       })
-      .catch((err) => {
+      .catch(() => {
         setError("Email ou mot de passe incorrect !");
         setPassword("");
         setEmail("");
