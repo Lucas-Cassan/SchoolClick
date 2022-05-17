@@ -83,7 +83,7 @@ const Profil = ({ navigation }: { navigation?: any }) => {
           )}
           {userImage !== "" && (
             <Image
-              source={require("../../backend/image/Gruber-Guillaume.jpg")}
+              source={require("../image/Gruber-Guillaume.jpg")}
               style={styles.picture}
             />
           )}

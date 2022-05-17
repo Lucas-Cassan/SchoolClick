@@ -32,7 +32,7 @@ exports.updateImage = async (req, res) => {
   userModel
     .findByIdAndUpdate(
       userId,
-      { image: "../../backend/image/" + picture.originalname + ".jpg" },
+      { image: "../image/" + picture.originalname + ".jpg" },
       { new: true, upsert: true },
     )
     .then((user) => console.log(user))
