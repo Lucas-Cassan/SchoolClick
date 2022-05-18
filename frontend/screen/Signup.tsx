@@ -71,7 +71,7 @@ const Signup = ({ navigation }: { navigation?: any }) => {
 
   const CreateNewAccount = () => {
     axios
-      .post("http://10.50.37.223:5000/api/user/signup", {
+      .post(`${process.env.REACT_APP_IP}/api/user/signup`, {
         email,
         password,
 

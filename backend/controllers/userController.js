@@ -1,5 +1,6 @@
 // Get User
 const userModel = require("../models/userModel");
+const fs = require("fs");
 
 exports.getOneUser = (req, res) => {
   userModel
@@ -15,9 +16,21 @@ exports.getOneUser = (req, res) => {
     });
 };
 
+exports.getPicture = (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+
+  return res
+    .status(200)
+    .sendFile("Gruber-Guillaume.jpg", { root: "image" }, (err) => {
+      console.log(err);
+    });
+};
+
 exports.updateImage = async (req, res) => {
   const picture = req.file;
   const userId = req.params.id;
+  console.log("cc");
 
   // try {
   //   fs.writeFileSync(
@@ -32,9 +45,15 @@ exports.updateImage = async (req, res) => {
   userModel
     .findByIdAndUpdate(
       userId,
-      { image: "../../backend/image/" + picture.originalname + ".jpg" },
+      {
+        image:
+          `${process.env.BACKEND_IP}` +
+          "/api/user/profile/" +
+          picture.originalname +
+          ".jpg",
+      },
       { new: true, upsert: true },
     )
-    .then((user) => console.log(user))
+    .then(() => res.status(200).json())
     .catch((err) => res.status(500).json(err));
 };
