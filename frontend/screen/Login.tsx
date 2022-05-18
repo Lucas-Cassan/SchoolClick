@@ -14,6 +14,7 @@ import * as SecureStore from "expo-secure-store";
 import { UidContext } from "../component/AppContext";
 import { useDispatch } from "react-redux";
 import { getUser } from "../redux/action/user.action";
+import { url } from "../Constant";
 
 const Login = ({ navigation }: { navigation?: any }) => {
   const [email, setEmail] = useState("");
@@ -30,7 +31,7 @@ const Login = ({ navigation }: { navigation?: any }) => {
       email: email,
     };
     await axios
-      .post(`${process.env.REACT_APP_IP}/api/user/login`, infosUser)
+      .post(`${url}/api/user/login`, infosUser)
       .then((res) => {
         auth.connect(res.data);
         SecureStore.setItemAsync("token", res.data.token);

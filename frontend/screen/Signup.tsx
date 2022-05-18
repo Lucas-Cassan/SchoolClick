@@ -16,6 +16,7 @@ import {
 import { CheckBox } from "react-native-elements";
 import * as SecureStore from "expo-secure-store";
 import { UidContext } from "../component/AppContext";
+import { url } from "../Constant";
 
 const Signup = ({ navigation }: { navigation?: any }) => {
   // Form
@@ -71,7 +72,7 @@ const Signup = ({ navigation }: { navigation?: any }) => {
 
   const CreateNewAccount = () => {
     axios
-      .post(`${process.env.REACT_APP_IP}/api/user/signup`, {
+      .post(`${url}/api/user/signup`, {
         email,
         password,
 
