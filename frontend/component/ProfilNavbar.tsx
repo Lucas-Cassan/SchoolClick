@@ -8,7 +8,7 @@ import { url } from "../Constant";
 import axios from "axios";
 
 function ProfilNavbar() {
-  const [image, setImage] = useState<string | any>(null);
+  const [image, setImage] = useState<string | any | null>(null);
   const [userId, setUserId] = useState<string | any>(null);
 
   // Redux
@@ -48,6 +48,7 @@ function ProfilNavbar() {
           .then((res) => {
             console.log("result from post");
             console.log(res.data);
+            setImage(null);
             setImage(res.data);
           })
           .catch((err) => console.log(err));

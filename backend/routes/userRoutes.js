@@ -26,7 +26,7 @@ router.get("/:id", userController.getOneUser);
 router.post(
   "/update-image/:id",
   upload.single("picture"),
-  userController.updateImage
+  userController.updateImage,
 );
 router.get("/profile/:id", userController.getPicture);
 

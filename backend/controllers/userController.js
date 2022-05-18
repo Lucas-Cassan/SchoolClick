@@ -49,7 +49,7 @@ exports.updateImage = async (req, res) => {
           picture.originalname +
           ".jpg",
       },
-      { new: true, upsert: true }
+      { new: true, upsert: true },
     )
     .then(() =>
       res
@@ -58,8 +58,8 @@ exports.updateImage = async (req, res) => {
           `${process.env.BACKEND_IP}` +
             "/api/user/profile/" +
             picture.originalname +
-            ".jpg"
-        )
+            ".jpg",
+        ),
     )
     .catch((err) => res.status(500).json(err));
 };
