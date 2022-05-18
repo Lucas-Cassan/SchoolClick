@@ -18,20 +18,17 @@ exports.getOneUser = (req, res) => {
 
 exports.getPicture = (req, res) => {
   const { id } = req.params;
-  console.log(id);
+  let userName = id;
+  console.log(userName);
 
-  return res
-    .status(200)
-    .sendFile("Gruber-Guillaume.jpg", { root: "image" }, (err) => {
-      console.log(err);
-    });
+  return res.status(200).sendFile(userName, { root: "image" }, (err) => {
+    console.log(err);
+  });
 };
 
 exports.updateImage = async (req, res) => {
   const picture = req.file;
   const userId = req.params.id;
-  console.log("cc");
-
   // try {
   //   fs.writeFileSync(
   //     "image/" + picture.originalname + ".jpg",
@@ -52,7 +49,7 @@ exports.updateImage = async (req, res) => {
           picture.originalname +
           ".jpg",
       },
-      { new: true, upsert: true },
+      { new: true, upsert: true }
     )
     .then(() =>
       res
@@ -61,8 +58,8 @@ exports.updateImage = async (req, res) => {
           `${process.env.BACKEND_IP}` +
             "/api/user/profile/" +
             picture.originalname +
-            ".jpg",
-        ),
+            ".jpg"
+        )
     )
     .catch((err) => res.status(500).json(err));
 };
