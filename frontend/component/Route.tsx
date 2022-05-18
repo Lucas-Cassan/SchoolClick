@@ -13,6 +13,7 @@ import * as SecureStore from "expo-secure-store";
 import { TouchableOpacity } from "react-native";
 import { useDispatch } from "react-redux";
 import { getUser } from "../redux/action/user.action";
+import Folder from "../screen/Folder";
 
 const Route = ({ navigation }: any) => {
   const Stack = createNativeStackNavigator();
@@ -104,6 +105,37 @@ const Route = ({ navigation }: any) => {
                   fontWeight: "bold",
                 },
                 headerLeft: () => (
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("Match")}
+                  >
+                    <Entypo name="home" size={26} color="#9A8142" />
+                  </TouchableOpacity>
+                ),
+              })}
+            />
+            <Stack.Screen
+              name="Folder"
+              component={Folder}
+              options={({ navigation }) => ({
+                title: "",
+                headerShadowVisible: false,
+                headerStyle: {
+                  backgroundColor: "#FCD36A",
+                },
+                headerHideShadow: true,
+                headerTitleStyle: {
+                  fontFamily: "Poppins-Bold",
+                  fontSize: 25,
+                  fontWeight: "bold",
+                },
+                headerLeft: () => (
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("Profil")}
+                  >
+                    <FontAwesome name="user" size={26} color="black" />
+                  </TouchableOpacity>
+                ),
+                headerRight: () => (
                   <TouchableOpacity
                     onPress={() => navigation.navigate("Match")}
                   >

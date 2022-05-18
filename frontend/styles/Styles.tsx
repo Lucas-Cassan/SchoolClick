@@ -90,7 +90,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
   },
 
-  //Checkbox
+  //Invisible
+  invisible: {},
 
   //View absolute
   viewBottomAbsolue: {
@@ -200,19 +201,25 @@ const styles = StyleSheet.create({
   },
 
   //PROFIL
-  picture: {
+  profilePicture: {
     marginTop: 5,
     width: 125,
     height: 125,
     borderRadius: 100,
     backgroundColor: "white",
     shadowOffset: {
-      width: 0,
-      height: 0,
+      width: 1,
+      height: 1,
     },
     shadowOpacity: 0.5,
     shadowRadius: 3,
-    // elevation: 5,
+    elevation: 2,
+  },
+  picture: {
+    marginTop: 5,
+    width: 125,
+    height: 125,
+    borderRadius: 100,
   },
   headerProfil: {
     overflow: "hidden",
