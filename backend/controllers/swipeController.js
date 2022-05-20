@@ -1,13 +1,9 @@
 const School = require("../models/schoolModel");
 const User = require("../models/userModel");
-var jwt_decode = require("jwt-decode");
-var mongo = require("mongodb");
 
 module.exports.getSchool = (req, res) => {
-  let idSchool = req.params.id;
-  console.log(idSchool);
+  const idSchool = req.params.id;
   School.find({ _id: idSchool }).then((school) => {
-    console.log("cc");
     if (!school) {
       return res
         .status("401")
