@@ -1,6 +1,8 @@
 import { hide } from "expo-splash-screen";
 import React from "react";
 import { StyleSheet, ViewStyle } from "react-native";
+import { withTheme } from "react-native-elements";
+import { CARD } from "../utils/constants";
 
 const styles = StyleSheet.create({
   //Body
@@ -10,6 +12,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F5F5FA",
   },
   bodyCenter: {
+    alignItems: "center",
     height: "100%",
     width: "100%",
     backgroundColor: "#F5F5FA",
@@ -19,7 +22,6 @@ const styles = StyleSheet.create({
     width: "100%",
     backgroundColor: "#026fff",
   },
-  container: {},
 
   //Title
   title: {
@@ -66,6 +68,26 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins-Bold",
     fontWeight: "bold",
     fontSize: 20,
+  },
+  buttonTextWhite: {
+    color: "white",
+    fontFamily: "Poppins-Bold",
+    fontWeight: "bold",
+    fontSize: 20,
+  },
+  buttonClose: {
+    backgroundColor: "#026fff",
+    fontFamily: "Poppins-Bold",
+    fontWeight: "bold",
+    fontSize: 20,
+    color: "white",
+    width: "100%",
+    height: 55,
+    borderRadius: 15,
+    alignItems: "center",
+    justifyContent: "center",
+    position: "absolute",
+    bottom: 25,
   },
   buttonLeft: {
     borderRadius: 15,
@@ -237,6 +259,77 @@ const styles = StyleSheet.create({
     backgroundColor: "#FCD36A",
     borderRadius: 1000,
     transform: [{ scaleX: 2 }],
+  },
+
+  container: {
+    position: "absolute",
+  },
+  image: {
+    width: CARD.WIDTH,
+    height: CARD.HEIGHT,
+    borderRadius: CARD.BORDER_RADIUS,
+  },
+  gradient: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 0,
+    borderRadius: CARD.BORDER_RADIUS,
+  },
+  name: {
+    position: "absolute",
+    bottom: 22,
+    left: 22,
+    fontSize: 36,
+    fontWeight: "bold",
+    color: "#fff",
+  },
+  choiceContainer: {
+    position: "absolute",
+    top: 100,
+  },
+  likeContainer: {
+    left: 45,
+    transform: [{ rotate: "-30deg" }],
+  },
+  nopeContainer: {
+    right: 45,
+    transform: [{ rotate: "30deg" }],
+  },
+
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  modalView: {
+    width: "100%",
+    height: "80%",
+    backgroundColor: "white",
+    borderRadius: 25,
+    alignItems: "center",
+    position: "absolute",
+    bottom: 0,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    padding: 20,
+  },
+
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center",
   },
 });
 
