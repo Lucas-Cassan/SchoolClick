@@ -43,7 +43,7 @@ function ProfilNavbar() {
               transformRequest: () => {
                 return formData;
               },
-            },
+            }
           )
           .then((res) => {
             console.log("result from post");

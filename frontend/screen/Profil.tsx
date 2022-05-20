@@ -10,7 +10,7 @@ const Profil = ({ navigation }: { navigation?: any }) => {
   return (
     <View style={styles.body}>
       <ProfilNavbar />
-      <View style={styles.container}>
+      <View>
         <TouchableOpacity style={styles.buttonLeft}>
           <View style={styles.buttonIcon}>
             <Ionicons name="document" size={24} color="#026FFF" />
