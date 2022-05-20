@@ -84,18 +84,19 @@ const Signup = ({ navigation }: { navigation?: any }) => {
       })
       .then((res) => {
         console.log(res.data);
-        setScreen3Error("");
-        setValidated(true);
-        SecureStore.setItemAsync("token", res.data.token);
-        SecureStore.setItemAsync("user", res.data.userId);
-        setTimeout(() => {
-          auth.connect(res.data);
-        }, 2000);
+        if (res.data === "Email déja utilisé !") {
+          setScreen3Error(res.data);
+        } else {
+          setScreen3Error("");
+          setValidated(true);
+          SecureStore.setItemAsync("token", res.data.token);
+          SecureStore.setItemAsync("user", res.data.userId);
+          setTimeout(() => {
+            auth.connect(res.data);
+          }, 500);
+        }
       })
-      .catch((err) => {
-        console.log(err);
-        setScreen3Error("Erreur");
-      });
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -214,11 +215,11 @@ const Signup = ({ navigation }: { navigation?: any }) => {
                 <Text style={styles.validate}>Utilisateur créer !</Text>
               )}
             </View>
-            <View style={styles.errorBox}>
-              {screen3Error !== "" && (
+            {screen3Error !== "" && (
+              <View>
                 <Text style={styles.error}>{screen3Error}</Text>
-              )}
-            </View>
+              </View>
+            )}
           </View>
           <View style={styles.viewBottomLarge}>
             <TouchableOpacity style={styles.button} onPress={CreateNewAccount}>

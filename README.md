@@ -4,13 +4,11 @@
 
 ### Rôles
 
-👤 **Guillaume Gruber** : Initalisation du projet et de toutes les fonctionnalitées (frontend et backend).
+👤 **Guillaume Gruber** : Initalisation du projet et du profil.
 
-👤 **Mehdi Lamtargi** : Soutien moral.
+👤 **Lucas Cassan** : Tout le style et implémentation du swipe.
 
-👤 **Lucas Cassan** : Tout le style.
-
-👤 **Clement Gras** : Soutien moral.
+👤 **Clement Gras** : Création du swipe.
 
 ---
 
