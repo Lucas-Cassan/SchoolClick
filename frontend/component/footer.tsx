@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Alert, Modal, Pressable, View } from "react-native";
 import { COLOR } from "../utils/constants";
 import RoundButton from "./roundButton";
 import { styles } from "../styles/StylesFooter";
+import axios from "axios";
+import { url } from "../Constant";
+import { useSelector } from "react-redux";
 
 export default function Footer({
   handleChoice,
@@ -11,6 +14,23 @@ export default function Footer({
   handleChoice: any;
   modal: any;
 }) {
+  const [userId, setUserId] = useState<string>();
+
+  // REDUX
+  const userReducer = useSelector((state: any) => state.userReducer);
+
+  const handleGetSchool = () => {
+    modal(true);
+    axios
+      .get(`${url}/api/swipe/getSchool/${userId}`)
+      .then((result) => console.log(result))
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    setUserId(userReducer._id);
+  }, [userReducer]);
+
   return (
     <View style={styles.container}>
       <RoundButton
@@ -23,7 +43,7 @@ export default function Footer({
         name="info"
         size={30}
         color={COLOR.info}
-        onPress={() => modal(true)}
+        onPress={handleGetSchool}
       />
       <RoundButton
         name="heart"

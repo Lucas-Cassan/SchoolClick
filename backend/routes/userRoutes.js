@@ -45,7 +45,7 @@ router.post("/update-profil", userController.updateProfil);
 router.post(
   "/update-image/:id",
   upload.single("picture"),
-  userController.updateImage,
+  userController.updateImage
 );
 router.post("/update-cv/:id", uploadCv.single("cv"), userController.updateCV);
 

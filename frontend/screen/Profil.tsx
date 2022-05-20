@@ -11,12 +11,11 @@ const Profil = ({ navigation }: { navigation?: any }) => {
     <View style={styles.body}>
       <ProfilNavbar />
 
-      <View style={styles.container}>
+      <View>
         <TouchableOpacity
           style={styles.buttonLeft}
           onPress={() => navigation.navigate("Folder")}
         >
-
           <View style={styles.buttonIcon}>
             <Ionicons name="document" size={24} color="#026FFF" />
           </View>

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useCallback, useEffect } from "react";
 import styles from "../styles/Styles";
 import stylesHome from "../styles/StylesHome";
-import Footer from "../component/footer";
+import Footer from "../component/Footer";
 import {
   Text,
   View,
@@ -15,19 +15,23 @@ import {
 import { pic as picArray } from "../utils/data";
 import Card from "../component/Card";
 import { ACTION_OFFSET, CARD } from "../utils/constants";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { url } from "../Constant";
+import { getListSchool } from "../redux/action/user.action";
 
 const Home = ({ navigation }: any) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const [pic, setPic] = useState(picArray);
+
+  // Redux
+  const dispatch = useDispatch<any>();
+  const userReducer = useSelector((state: any) => state.userReducer);
+  const schoolReducer = useSelector((state: any) => state.schoolReducer);
+
   const swipe = useRef(new Animated.ValueXY()).current;
   const tiltSign = useRef(new Animated.Value(1)).current;
-
-  useEffect(() => {
-    if (!pic.length) {
-      setPic(picArray);
-    }
-  }, [pic.length]);
 
   const removeTopCard = useCallback(() => {
     setPic((prevState) => prevState.slice(1));
@@ -77,6 +81,17 @@ const Home = ({ navigation }: any) => {
       }
     },
   });
+  console.log(schoolReducer);
+
+  useEffect(() => {
+    dispatch(getListSchool(userReducer.id));
+  }, []);
+
+  useEffect(() => {
+    if (!pic.length) {
+      setPic(picArray);
+    }
+  }, [pic.length]);
 
   return (
     <View style={styles.bodyCenter}>
@@ -112,6 +127,7 @@ const Home = ({ navigation }: any) => {
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.titleMin}>Plus d'information</Text>
+            <View></View>
             <TouchableOpacity
               style={styles.buttonClose}
               onPress={() => setModalVisible(!modalVisible)}

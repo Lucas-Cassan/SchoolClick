@@ -42,7 +42,7 @@ const Route = ({ navigation }: any) => {
         setAuth(false);
       },
     }),
-    [],
+    []
   );
 
   useEffect(() => {
