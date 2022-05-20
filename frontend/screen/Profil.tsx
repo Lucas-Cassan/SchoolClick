@@ -11,16 +11,14 @@ const Profil = ({ navigation }: { navigation?: any }) => {
     <View style={styles.body}>
       <ProfilNavbar />
       <View style={styles.container}>
-        <TouchableOpacity style={styles.buttonLeft}>
+        <TouchableOpacity
+          style={styles.buttonLeft}
+          onPress={() => navigation.navigate("Folder")}
+        >
           <View style={styles.buttonIcon}>
             <Ionicons name="document" size={24} color="#026FFF" />
           </View>
-          <Text
-            style={styles.buttonText}
-            onPress={() => navigation.navigate("Folder")}
-          >
-            Mon dossier
-          </Text>
+          <Text style={styles.buttonText}>Mon dossier</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.buttonLeft}>
           <View style={styles.buttonIcon}>
@@ -28,7 +26,10 @@ const Profil = ({ navigation }: { navigation?: any }) => {
           </View>
           <Text style={styles.buttonText}>Mes écoles</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonLeft}>
+        <TouchableOpacity
+          style={styles.buttonLeft}
+          onPress={() => navigation.navigate("Account")}
+        >
           <View style={styles.buttonIcon}>
             <Ionicons name="settings-sharp" size={24} color="#026FFF" />
           </View>

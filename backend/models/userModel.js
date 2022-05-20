@@ -40,6 +40,12 @@ const userSchema = new mongoose.Schema(
       type: String,
     },
 
+    likeArray: [
+      {
+        type: String,
+      },
+    ],
+
     dev: {
       type: Boolean,
     },
