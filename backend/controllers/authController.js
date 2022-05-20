@@ -14,6 +14,8 @@ exports.signup = (req, res, next) => {
         email: email,
         password: hash,
         image: "",
+        CV: "",
+        likeArray: [],
         dev: dev,
         marketing: marketing,
       });
@@ -28,9 +30,8 @@ exports.signup = (req, res, next) => {
             }),
           });
         })
-        .catch((err) => {
-          res.status(400).send({ error: "Email déja utilisé !" });
-          console.log(err);
+        .catch(() => {
+          res.status(200).send("Email déja utilisé !");
         });
     })
     .catch((err) => {

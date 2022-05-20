@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { TouchableOpacity, View } from "react-native";
 import { Image, Text } from "react-native-elements";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "../styles/Styles";
 import * as ImagePicker from "expo-image-picker";
 import { url } from "../Constant";
 import axios from "axios";
+import { getUser } from "../redux/action/user.action";
 
 function ProfilNavbar() {
   const [image, setImage] = useState<string | any | null>(null);
@@ -13,6 +14,7 @@ function ProfilNavbar() {
 
   // Redux
   const userReducer = useSelector((state: any) => state.userReducer);
+  const dispatch = useDispatch<any>();
 
   const handleUpdateImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -49,7 +51,7 @@ function ProfilNavbar() {
             console.log("result from post");
             console.log(res.data);
             setImage(null);
-            setImage(res.data);
+            dispatch(getUser(userId));
           })
           .catch((err) => console.log(err));
       }
