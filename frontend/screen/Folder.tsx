@@ -27,7 +27,7 @@ const Folder = () => {
       base64: false,
     }).then((result) => {
       if (!result.cancelled) {
-        console.log(result.uri);
+        /* console.log(result.uri); */
         setShowCv(true);
         setCv(result.uri);
 
@@ -50,11 +50,11 @@ const Folder = () => {
               transformRequest: () => {
                 return formData;
               },
-            },
+            }
           )
           .then((res) => {
             console.log("result from post");
-            console.log(res.data);
+            /* console.log(res.data); */
             setCv(null);
             setCv(res.data);
           })

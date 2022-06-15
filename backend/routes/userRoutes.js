@@ -13,6 +13,7 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage: storage,
 });
+
 // CV
 const storageCv = multer.diskStorage({
   destination: function (req, file, cb) {

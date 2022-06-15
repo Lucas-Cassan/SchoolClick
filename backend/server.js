@@ -8,6 +8,7 @@ require("./config/db");
 
 // Routes
 const userRoutes = require("./routes/userRoutes");
+const swipeRoutes = require("./routes/swipeRoutes");
 
 // Express
 const app = express();
@@ -27,6 +28,7 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json({ limit: 100000000000 }));
 // Routes
 app.use("/api/user", userRoutes);
+app.use("/api/swipe", swipeRoutes);
 
 // Server
 app.listen(5000, () => {

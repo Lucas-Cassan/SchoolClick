@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Alert, Modal, Pressable, View } from "react-native";
+import { View } from "react-native";
 import { COLOR } from "../utils/constants";
 import RoundButton from "./roundButton";
 import { styles } from "../styles/StylesFooter";
@@ -27,6 +27,15 @@ export default function Footer({
       .catch((err) => console.log(err));
   };
 
+  const handleSendEmail = () => {
+    axios.post(`${url}/api/swipe/like`, {
+      userId: userReducer._id,
+      name: userReducer.name,
+      lastName: userReducer.lastName,
+      email: userReducer.email,
+    });
+  };
+
   useEffect(() => {
     setUserId(userReducer._id);
   }, [userReducer]);
@@ -49,7 +58,10 @@ export default function Footer({
         name="heart"
         size={40}
         color={COLOR.like}
-        onPress={() => handleChoice(1)}
+        onPress={() => {
+          handleChoice(1);
+          handleSendEmail();
+        }}
       />
     </View>
   );

@@ -20,10 +20,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { url } from "../Constant";
 import { getListSchool } from "../redux/action/user.action";
 
+interface SchoolProps {
+  name: string;
+  source: string;
+  _id: number;
+}
+
 const Home = ({ navigation }: any) => {
   const [modalVisible, setModalVisible] = useState(false);
 
-  const [pic, setPic] = useState(picArray);
+  const [loadingSchool, setLoadingSchool] = useState(true);
+  const [arraySchool, setArraySchool] = useState<any[]>([]);
 
   // Redux
   const dispatch = useDispatch<any>();
@@ -34,7 +41,7 @@ const Home = ({ navigation }: any) => {
   const tiltSign = useRef(new Animated.Value(1)).current;
 
   const removeTopCard = useCallback(() => {
-    setPic((prevState) => prevState.slice(1));
+    setArraySchool((oldValue) => oldValue.slice(1));
     swipe.setValue({ x: 0, y: 0 });
   }, [swipe]);
 
@@ -81,40 +88,51 @@ const Home = ({ navigation }: any) => {
       }
     },
   });
-  console.log(schoolReducer);
 
   useEffect(() => {
-    dispatch(getListSchool(userReducer.id));
-  }, []);
+    if (loadingSchool && userReducer) {
+      console.log(userReducer);
 
-  useEffect(() => {
-    if (!pic.length) {
-      setPic(picArray);
+      dispatch(getListSchool(userReducer._id));
+      setTimeout(() => {
+        setLoadingSchool(false);
+      }, 1000);
     }
-  }, [pic.length]);
+  }, [userReducer, loadingSchool]);
+
+  useEffect(() => {
+    if (schoolReducer.length > 0) {
+      setArraySchool(schoolReducer);
+    }
+  }, [schoolReducer]);
 
   return (
     <View style={styles.bodyCenter}>
-      {pic
-        .map(({ name, source }, index) => {
-          const isFirst = index === 0;
-          const dragHandlers = isFirst ? panResponder.panHandlers : {};
-          return (
-            <Card
-              modal={setModalVisible}
-              key={name}
-              name={name}
-              source={source}
-              isFirst={isFirst}
-              swipe={swipe}
-              tiltSign={tiltSign}
-              {...dragHandlers}
-            />
-          );
-        })
-        .reverse()}
+      {!loadingSchool &&
+        arraySchool.length > 0 &&
+        arraySchool
+          .map((obj: SchoolProps, index: number) => {
+            //console.log(obj);
+
+            const isFirst = index === 0;
+            const dragHandlers = isFirst ? panResponder.panHandlers : {};
+            return (
+              <Card
+                modal={setModalVisible}
+                key={obj._id}
+                name={obj.name}
+                source={obj.source}
+                isFirst={isFirst}
+                swipe={swipe}
+                tiltSign={tiltSign}
+                {...dragHandlers}
+              />
+            );
+          })
+          .reverse()}
 
       <Footer handleChoice={handleChoice} modal={setModalVisible} />
+
       <Modal
         animationType="slide"
         transparent={true}

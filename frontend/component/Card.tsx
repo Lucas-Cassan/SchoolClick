@@ -4,6 +4,7 @@ import { Animated, Image, Pressable, Text, View } from "react-native";
 import Choice from "./Choice";
 import styles from "../styles/Styles";
 import { ACTION_OFFSET } from "../utils/constants";
+import { url } from "../Constant";
 
 export default function Card({
   modal,
@@ -73,7 +74,11 @@ export default function Card({
       {...rest}
     >
       <Pressable onPress={() => modal(true)}>
-        <Image source={source} style={styles.image} />
+        <Image
+          source={{ uri: source }}
+          style={styles.image}
+          resizeMode="cover"
+        />
       </Pressable>
       <LinearGradient
         colors={["transparent", "rgba(0,0,0,0.9"]}

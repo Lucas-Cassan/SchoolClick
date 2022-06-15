@@ -15,6 +15,7 @@ import { UidContext } from "../component/AppContext";
 import { useDispatch } from "react-redux";
 import { getUser } from "../redux/action/user.action";
 import { url } from "../Constant";
+import { getListSchool } from "../redux/action/user.action";
 
 const Login = ({ navigation }: { navigation?: any }) => {
   const [email, setEmail] = useState("");

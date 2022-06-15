@@ -83,7 +83,6 @@ const Signup = ({ navigation }: { navigation?: any }) => {
         marketing: marketingCheck,
       })
       .then((res) => {
-        console.log(res.data);
         if (res.data === "Email déja utilisé !") {
           setScreen3Error(res.data);
         } else {

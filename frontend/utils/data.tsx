@@ -2,7 +2,8 @@ export const pic = [
   {
     id: "62878ac5761539e7e960ca7a",
     name: "École 1",
-    source: require("../assets/images/pic1.jpg"),
+    source:
+      "https://www.montpellier3m.fr/sites/default/files/ecole_superieure_de_beaux-arts_montpellier_mediterranee_metropole_cyohann_gozard_moco_0.jpg",
     tags: ["marketing"],
   },
   {

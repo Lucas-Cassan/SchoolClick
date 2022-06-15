@@ -46,20 +46,21 @@ const Route = ({ navigation }: any) => {
   );
 
   useEffect(() => {
-    SecureStore.getItemAsync("token")
-      .then((res) => {
-        setAuth(res !== null);
-      })
-      .catch((err) => console.log(err));
-
-    SecureStore.getItemAsync("user")
-      .then((res) => {
-        console.log(res);
-        setUserId(res !== null);
-        dispatch(getUser(res));
-      })
-      .catch((err) => console.log(err));
-  }, [auth]);
+    (async () => {
+      setAuth(false);
+      await SecureStore.getItemAsync("token")
+        .then(async () => {
+          await SecureStore.getItemAsync("user")
+            .then((res) => {
+              setUserId(res !== null);
+              dispatch(getUser(res));
+              setAuth(res !== null);
+            })
+            .catch((err) => console.log(err));
+        })
+        .catch((err) => console.log(err));
+    })();
+  }, []);
 
   return (
     <UidContext.Provider value={authMemo}>

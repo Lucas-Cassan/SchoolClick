@@ -49,7 +49,6 @@ function ProfilNavbar() {
           )
           .then((res) => {
             console.log("result from post");
-            console.log(res.data);
             setImage(null);
             dispatch(getUser(userId));
           })

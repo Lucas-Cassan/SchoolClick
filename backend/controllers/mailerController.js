@@ -17,8 +17,9 @@ var transporter = nodemailer.createTransport({
 var mailOptions = {
   from: "lucascassand@outlook.com",
   to: "lucascassan.pro@gmail.com",
-  subject: "SUJET",
+  subject: "Nouvelle candidature",
   text: "TEXT",
+  attachments: [{ filename: "attachment.txt", content: data }],
 };
 
 transporter.sendMail(mailOptions, function (error, info) {
