@@ -43,7 +43,7 @@ const Route = ({ navigation }: any) => {
         setAuth(false);
       },
     }),
-    [],
+    []
   );
 
   useEffect(() => {
@@ -55,6 +55,7 @@ const Route = ({ navigation }: any) => {
             .then((res) => {
               setUserId(res !== null);
               setAuth(res !== null);
+              dispatch(getUser(res));
             })
             .catch((err) => console.log(err));
         })
