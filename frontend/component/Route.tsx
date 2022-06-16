@@ -71,7 +71,7 @@ const Route = ({ navigation }: any) => {
               name="Match"
               component={Match}
               options={({ navigation, route }) => ({
-                title: "Still",
+                title: "Spill",
                 headerShadowVisible: false,
                 headerStyle: {
                   backgroundColor: "#F5F5FA",
