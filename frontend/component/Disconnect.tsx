@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { TouchableOpacity, View } from "react-native";
 import { Text } from "react-native-elements";
 import { UidContext } from "../component/AppContext";
-import { MaterialIcons } from "@expo/vector-icons";
 import styles from "../styles/Styles";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 

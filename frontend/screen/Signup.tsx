@@ -17,6 +17,8 @@ import { CheckBox } from "react-native-elements";
 import * as SecureStore from "expo-secure-store";
 import { UidContext } from "../component/AppContext";
 import { url } from "../Constant";
+import { useDispatch } from "react-redux";
+import { getUser } from "../redux/action/user.action";
 
 const Signup = ({ navigation }: { navigation?: any }) => {
   // Form
@@ -44,6 +46,7 @@ const Signup = ({ navigation }: { navigation?: any }) => {
   const [screen3Error, setScreen3Error] = useState<string | undefined>();
 
   const auth = useContext(UidContext);
+  const dispatch = useDispatch<any>();
 
   const handleScreen1 = () => {
     setScreen1(true);
@@ -82,17 +85,16 @@ const Signup = ({ navigation }: { navigation?: any }) => {
         dev: devCheck,
         marketing: marketingCheck,
       })
-      .then((res) => {
+      .then(async (res) => {
         if (res.data === "Email déja utilisé !") {
           setScreen3Error(res.data);
         } else {
           setScreen3Error("");
           setValidated(true);
-          SecureStore.setItemAsync("token", res.data.token);
-          SecureStore.setItemAsync("user", res.data.userId);
-          setTimeout(() => {
-            auth.connect(res.data);
-          }, 500);
+          await SecureStore.setItemAsync("token", res.data.token);
+          await SecureStore.setItemAsync("user", res.data.userId);
+          auth.connect(res.data);
+          dispatch(getUser(res.data.userId));
         }
       })
       .catch((err) => console.log(err));

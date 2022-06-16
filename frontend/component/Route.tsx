@@ -39,10 +39,11 @@ const Route = ({ navigation }: any) => {
       },
       logout: async () => {
         await SecureStore.deleteItemAsync("token");
+        await SecureStore.deleteItemAsync("user");
         setAuth(false);
       },
     }),
-    []
+    [],
   );
 
   useEffect(() => {
@@ -53,7 +54,6 @@ const Route = ({ navigation }: any) => {
           await SecureStore.getItemAsync("user")
             .then((res) => {
               setUserId(res !== null);
-              dispatch(getUser(res));
               setAuth(res !== null);
             })
             .catch((err) => console.log(err));
